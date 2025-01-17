@@ -1,0 +1,53 @@
+import random
+
+def guess():
+    num1 = random.randint(0, 20)
+    numtent1 = 0
+    
+    print("\n--- Bem-vindo ao Jogo do Número Misterioso ! ---")
+    print("Tens 5 tentativas para adivinhar o número entre 0 e 20.")
+
+    while numtent1 < 3:
+        try:
+            numeroUti = int(input("\nIntroduz um número entre 0 e 20: "))
+        except ValueError:
+            print("Por favor, insira um número válido.")
+            continue
+
+        if numeroUti < 0 or numeroUti > 20:
+            print("Número fora do intervalo permitido (0 a 20). Tenta outra vez.")
+            continue
+        
+        numtent1 += 1
+        
+        if numeroUti == num1:
+            print("\n🎉 Parabéns, ganhaste o jogo! 🎉")
+            break
+        elif numeroUti > num1:
+            print(f"O número {numeroUti} está acima do número escondido.")
+        else:
+            print(f"O número {numeroUti} está abaixo do número escondido.")
+
+        if numtent1 == 5:
+            print("\n Não tens mais tentativas. O número era:", num1)
+
+    print("\n--- Fim do jogo ---\n")
+
+def menu():
+    while True:
+        print("\n========== MENU ==========")
+        print("1 - Jogar")
+        print("2 - Sair")
+        
+        opcao = input("Escolhe uma opção: ")
+
+        if opcao == "1":
+            guess()
+        elif opcao == "2":
+            print("\nObrigado por jogar! Até à próxima. 👋")
+            break
+        else:
+            print("Opção inválida. Tenta novamente.")
+
+if __name__ == "__main__":
+    menu()
