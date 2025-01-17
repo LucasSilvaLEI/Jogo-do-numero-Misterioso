@@ -5,7 +5,7 @@ def guess():
     numtent1 = 0
     
     print("\n--- Bem-vindo ao Jogo do Número Misterioso ! ---")
-    print("Tens 5 tentativas para adivinhar o número entre 0 e 20.")
+    print("Tens 3 tentativas para adivinhar o número entre 0 e 20.")
 
     while numtent1 < 3:
         try:
