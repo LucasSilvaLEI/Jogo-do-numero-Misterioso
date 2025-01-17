@@ -1,0 +1,23 @@
+import random
+
+def guess ():
+    num1=random.randint(0,20)
+    numtent1=0
+    while True:
+        numeroUti=int(input("Introduza um numero entre 0 e 20:"))
+        numtent1+=1
+        if numeroUti > 20 :
+            print('O numero esta a acima de 20 !')
+            break
+        elif numeroUti==num1:
+            print("Parabens, ganhaste o jogo!")
+            break
+        elif numeroUti > num1 :
+            print(f"O numero {numeroUti} está acima do escondido")
+        else:
+            print(f"O numero {numeroUti} está abaixo do escondido")
+        if numtent1 == 3:
+            print(f'Ficaste sem tentativas, o numero correto era, {num1} boa sorte da proxima vez!')
+            break
+    print("Acabaste o jogo")
+guess()
