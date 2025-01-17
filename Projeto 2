@@ -1,0 +1,54 @@
+import random
+import tkinter as tk
+from tkinter import messagebox
+
+
+class GuessingGame:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("O jogo do Número Misterioso")
+        self.root.geometry("500x350")
+
+        self.num1 = random.randint(0, 20)  
+        self.numtent1 = 0  
+
+        self.label_title = tk.Label(root, text="Adivinha o número entre 0 e 20", font=("Arial", 12))
+        self.label_title.pack(pady=10)
+
+        self.entry = tk.Entry(root, font=("Arial", 12))
+        self.entry.pack(pady=5)
+
+        self.button_check = tk.Button(root, text="Adivinhar", command=self.check_guess)
+        self.button_check.pack(pady=5)
+
+        self.label_result = tk.Label(root, text="", font=("Arial", 10))
+        self.label_result.pack(pady=5)
+
+    def check_guess(self):
+        try:
+            numeroUti = int(self.entry.get())  
+        except ValueError:
+            messagebox.showwarning("Entrada Inválida", "Por favor, insere um número válido!")
+            return
+
+        if numeroUti < 0 or numeroUti > 20:
+            messagebox.showwarning("Fora do Intervalo", "Escolhe um número entre 0 e 20!")
+            return
+
+        self.numtent1 += 1  
+
+        if numeroUti == self.num1:
+            messagebox.showinfo("Parabéns!", "🗣️🔥🔥 Adivinhaste o número! 💯💯🙀")
+            self.root.quit()  
+        elif self.numtent1 == 3:
+            messagebox.showerror("Fim do jogo", f" 🥺😭😫 Tentativas esgotadas! 😵😪💤 O número era {self.num1}. ")
+            self.root.quit()
+        elif numeroUti > self.num1:
+            self.label_result.config(text=f"⬆️ O número {numeroUti} está acima do número escondido. ⬆️")
+        else:
+            self.label_result.config(text=f"⬇️ O número {numeroUti} está abaixo do número escondido. ⬇️")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    game = GuessingGame(root)
+    root.mainloop()
